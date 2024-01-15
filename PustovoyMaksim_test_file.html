@@ -1,15 +1,77 @@
+</html>
 <!DOCTYPE html>
-
-<html lang="eng">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Змейка</title>
+    <style>
+        #game-board {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            position: relative;
+        }
 
-<meta charset="UTF-8">
+        .snake {
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            position: absolute;
+        }
 
-<title>Крутое название!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</title>
+        .food {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
 </head>
-
 <body>
-<title>Основной сайт доната V2.0</title>
-</body>
+    <h1>Привет! Это игра "Змейка".</h1>
+    <div id="game-board">
+        <div class="snake" style="top: 200px; left: 200px;"></div>
+        <div class="food" style="top: 100px; left: 100px;"></div>
+    </div>
 
+    <script>
+        let snakeX = 200;
+        let snakeY = 200;
+        let foodX = 100;
+        let foodY = 100;
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp') {
+                snakeY -= 20;
+            } else if (event.key === 'ArrowDown') {
+                snakeY += 20;
+            } else if (event.key === 'ArrowLeft') {
+                snakeX -= 20;
+            } else if (event.key === 'ArrowRight') {
+                snakeX += 20;
+            }
+
+            updateSnakePosition();
+            checkCollision();
+        });
+
+        function updateSnakePosition() {
+            const snakeElement = document.querySelector('.snake');
+            snakeElement.style.top = snakeY + 'px';
+            snakeElement.style.left = snakeX + 'px';
+        }
+
+        function checkCollision() {
+            const snakeElement = document.querySelector('.snake');
+            const foodElement = document.querySelector('.food');
+
+            if (snakeX === foodX && snakeY === foodY) {
+                // Змейка съела еду
+                // Добавьте здесь логику увеличения длины змейки и перемещения еды
+                alert('Ом-ном-ном! Змейка съела еду!');
+            }
+        }
+    </script>
+</body>
 </html>
